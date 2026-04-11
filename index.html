@@ -95,7 +95,7 @@ body {
 }
 
 /* FORM */
-select, button {
+select, input, textarea, button {
     width: 100%;
     padding: 12px;
     margin-top: 10px;
@@ -106,6 +106,7 @@ button {
     background: #25D366;
     color: white;
     border: none;
+    cursor: pointer;
 }
 </style>
 </head>
@@ -158,19 +159,38 @@ button {
 
         <h2>Pilih Layanan</h2>
 
-        <select id="layananSelect">
+        <select id="layananSelect" onchange="tampilForm()">
             <option value="">-- Pilih Layanan --</option>
-            <option>Potong rumput</option>
-            <option>Perawatan taman</option>
-            <option>Penumbuhan rumput</option>
-            <option>Custom</option>
+            <option value="potong">Potong rumput</option>
+            <option value="taman">Perawatan taman</option>
+            <option value="tanam">Penumbuhan rumput</option>
+            <option value="custom">Custom</option>
         </select>
+
+        <!-- FORM TAMBAHAN -->
+        <div id="formPotong" style="display:none;">
+
+            <input type="text" id="luas" placeholder="Perkiraan luas (contoh: 100m2)">
+            <input type="text" id="kontak" placeholder="Nomor HP / WhatsApp">
+            <textarea id="alamat" placeholder="Alamat lengkap"></textarea>
+
+        </div>
 
         <button onclick="kirimWA()">Pesan Sekarang</button>
     </div>
 </div>
 
 <script>
+function tampilForm() {
+    var layanan = document.getElementById("layananSelect").value;
+
+    if (layanan === "potong") {
+        document.getElementById("formPotong").style.display = "block";
+    } else {
+        document.getElementById("formPotong").style.display = "none";
+    }
+}
+
 function kirimWA() {
     var layanan = document.getElementById("layananSelect").value;
 
@@ -180,10 +200,27 @@ function kirimWA() {
     }
 
     var nomor = "6282285878450";
-    var pesan = "Halo YardCare Pekanbaru, saya ingin pesan:\n" + layanan;
+    var pesan = "Halo YardCare Pekanbaru,%0A";
 
-    var url = "https://wa.me/" + nomor + "?text=" + encodeURIComponent(pesan);
+    if(layanan === "potong") {
+        var luas = document.getElementById("luas").value;
+        var kontak = document.getElementById("kontak").value;
+        var alamat = document.getElementById("alamat").value;
 
+        if(luas === "" || kontak === "" || alamat === "") {
+            alert("Lengkapi data dulu!");
+            return;
+        }
+
+        pesan += "Saya ingin potong rumput.%0A";
+        pesan += "Luas: " + luas + "%0A";
+        pesan += "Kontak: " + kontak + "%0A";
+        pesan += "Alamat: " + alamat;
+    } else {
+        pesan += "Saya ingin layanan: " + layanan;
+    }
+
+    var url = "https://wa.me/" + nomor + "?text=" + pesan;
     window.open(url, '_blank');
 }
 
