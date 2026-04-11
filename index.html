@@ -15,13 +15,28 @@ body {
 .header {
     background: #2e7d32;
     color: white;
-    padding: 20px;
+    padding: 30px;
     text-align: center;
+}
+
+/* MENU */
+.nav {
+    background: #1b5e20;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    padding: 10px;
+}
+
+.nav a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
 }
 
 /* SECTION */
 .section {
-    padding: 30px;
+    padding: 40px;
     text-align: center;
 }
 
@@ -32,55 +47,19 @@ body {
     padding: 12px 20px;
     border-radius: 8px;
     text-decoration: none;
-    display: inline-block;
-    margin-top: 10px;
 }
 
-/* POPUP */
-.overlay {
-    position: fixed;
-    width: 100%;
-    height: 100%;
-    background: rgba(0,0,0,0.4);
-    top: 0;
-    left: 0;
+/* GALERI */
+.gallery {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
 }
 
-.popup {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background: white;
-    padding: 25px;
-    border-radius: 15px;
-    width: 90%;
-    max-width: 400px;
-    text-align: center;
-}
-
-.close {
-    position: absolute;
-    top: 10px;
-    right: 15px;
-    font-size: 22px;
-    cursor: pointer;
-}
-
-/* FORM */
-select, button {
-    width: 100%;
-    padding: 12px;
-    margin-top: 10px;
-    border-radius: 8px;
-    font-size: 16px;
-}
-
-button {
-    background: #25D366;
-    color: white;
-    border: none;
-    cursor: pointer;
+.gallery img {
+    width: 300px;
+    border-radius: 10px;
 }
 </style>
 </head>
@@ -93,67 +72,41 @@ button {
     <p>Jasa Perawatan Taman & Halaman Profesional</p>
 </div>
 
+<!-- MENU -->
+<div class="nav">
+    <a href="#layanan">Layanan</a>
+    <a href="#hasil">Hasil Kerja</a>
+    <a href="#testimoni">Testimoni</a>
+</div>
+
 <!-- LAYANAN -->
-<div class="section">
+<div class="section" id="layanan">
     <h2>Layanan Kami</h2>
     <p>✔ Potong rumput</p>
     <p>✔ Perawatan taman</p>
     <p>✔ Penumbuhan rumput</p>
     <p>✔ Custom sesuai kebutuhan</p>
 
-    <a href="#" class="btn" onclick="bukaPopup()">Pesan Sekarang</a>
+    <br>
+    <a href="#" class="btn">Pesan Sekarang</a>
 </div>
 
-<!-- KONTAK -->
-<div class="section">
-    <h2>Kontak</h2>
-    <p>WhatsApp: 0822-8587-8450</p>
-</div>
+<!-- HASIL KERJA -->
+<div class="section" id="hasil">
+    <h2>Hasil Kerja Kami</h2>
 
-<!-- POPUP -->
-<div class="overlay" id="popupBox">
-    <div class="popup">
-        <span class="close" onclick="tutupPopup()">×</span>
-
-        <h2>Pilih Layanan</h2>
-
-        <select id="layanan">
-            <option value="">-- Pilih Layanan --</option>
-            <option>JASA POTONG RUMPUT HALAMAN</option>
-            <option>JASA PERAWATAN TAMAN</option>
-            <option>JASA PENUMBUHAN RUMPUT</option>
-            <option>JASA CUSTOM</option>
-        </select>
-
-        <button onclick="kirimWA()">Pesan Sekarang</button>
+    <div class="gallery">
+        <img src="taman1.jpg">
+        <img src="taman2.jpg">
     </div>
 </div>
 
-<script>
-function kirimWA() {
-    var layanan = document.getElementById("layanan").value;
-
-    if(layanan === "") {
-        alert("Silakan pilih layanan dulu!");
-        return;
-    }
-
-    var nomor = "6282285878450";
-    var pesan = "Halo YardCare Pekanbaru, saya ingin pesan layanan:\n" + layanan;
-
-    var url = "https://wa.me/" + nomor + "?text=" + encodeURIComponent(pesan);
-
-    window.open(url, '_blank');
-}
-
-function tutupPopup() {
-    document.getElementById("popupBox").style.display = "none";
-}
-
-function bukaPopup() {
-    document.getElementById("popupBox").style.display = "block";
-}
-</script>
+<!-- TESTIMONI -->
+<div class="section" id="testimoni">
+    <h2>Testimoni</h2>
+    <p>"Kerja rapi, cepat!" - Budi</p>
+    <p>"Halaman jadi bersih banget!" - Andi</p>
+</div>
 
 </body>
 </html>
