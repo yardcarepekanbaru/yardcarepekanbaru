@@ -11,18 +11,32 @@ body {
     font-family: Arial, sans-serif;
 }
 
-/* Background */
-.main {
-    height: 100vh;
-    background: url('https://images.unsplash.com/photo-1592841200221-a6898f307baa') center/cover no-repeat;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+/* HEADER */
+.header {
+    background: #2e7d32;
     color: white;
+    padding: 20px;
     text-align: center;
 }
 
-/* Overlay transparan */
+/* SECTION */
+.section {
+    padding: 30px;
+    text-align: center;
+}
+
+/* BUTTON */
+.btn {
+    background: #25D366;
+    color: white;
+    padding: 12px 20px;
+    border-radius: 8px;
+    text-decoration: none;
+    display: inline-block;
+    margin-top: 10px;
+}
+
+/* POPUP */
 .overlay {
     position: fixed;
     width: 100%;
@@ -32,7 +46,6 @@ body {
     left: 0;
 }
 
-/* Popup */
 .popup {
     position: fixed;
     top: 50%;
@@ -44,20 +57,17 @@ body {
     width: 90%;
     max-width: 400px;
     text-align: center;
-    box-shadow: 0 5px 20px rgba(0,0,0,0.3);
 }
 
-/* Tombol X */
 .close {
     position: absolute;
     top: 10px;
     right: 15px;
     font-size: 22px;
     cursor: pointer;
-    color: #333;
 }
 
-/* Form */
+/* FORM */
 select, button {
     width: 100%;
     padding: 12px;
@@ -66,7 +76,6 @@ select, button {
     font-size: 16px;
 }
 
-/* Tombol WA */
 button {
     background: #25D366;
     color: white;
@@ -78,15 +87,30 @@ button {
 
 <body>
 
-<!-- Background -->
-<div class="main">
-    <div>
-        <h1>YardCare Pekanbaru</h1>
-        <p>Jasa Perawatan Taman & Halaman Profesional</p>
-    </div>
+<!-- HEADER -->
+<div class="header">
+    <h1>YardCare Pekanbaru</h1>
+    <p>Jasa Perawatan Taman & Halaman Profesional</p>
 </div>
 
-<!-- Popup -->
+<!-- LAYANAN -->
+<div class="section">
+    <h2>Layanan Kami</h2>
+    <p>✔ Potong rumput</p>
+    <p>✔ Perawatan taman</p>
+    <p>✔ Penumbuhan rumput</p>
+    <p>✔ Custom sesuai kebutuhan</p>
+
+    <a href="#" class="btn" onclick="bukaPopup()">Pesan Sekarang</a>
+</div>
+
+<!-- KONTAK -->
+<div class="section">
+    <h2>Kontak</h2>
+    <p>WhatsApp: 0822-8587-8450</p>
+</div>
+
+<!-- POPUP -->
 <div class="overlay" id="popupBox">
     <div class="popup">
         <span class="close" onclick="tutupPopup()">×</span>
@@ -95,10 +119,10 @@ button {
 
         <select id="layanan">
             <option value="">-- Pilih Layanan --</option>
-            <option>JASA POTONG RUMPUT HALAMAN (Rumput & tumbuhan liar)</option>
-            <option>JASA PERAWATAN TAMAN (Pemangkasan taman)</option>
-            <option>JASA PENUMBUHAN RUMPUT HALAMAN</option>
-            <option>JASA CUSTOM (Permintaan layanan khusus)</option>
+            <option>JASA POTONG RUMPUT HALAMAN</option>
+            <option>JASA PERAWATAN TAMAN</option>
+            <option>JASA PENUMBUHAN RUMPUT</option>
+            <option>JASA CUSTOM</option>
         </select>
 
         <button onclick="kirimWA()">Pesan Sekarang</button>
@@ -124,6 +148,10 @@ function kirimWA() {
 
 function tutupPopup() {
     document.getElementById("popupBox").style.display = "none";
+}
+
+function bukaPopup() {
+    document.getElementById("popupBox").style.display = "block";
 }
 </script>
 
