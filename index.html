@@ -8,52 +8,80 @@
 <style>
 body {
     font-family: Arial;
-    background: #2e7d32;
-    color: white;
-    text-align: center;
     margin: 0;
 }
 
-.container {
-    margin-top: 100px;
-    padding: 20px;
+/* Background blur */
+.overlay {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.6);
+    top: 0;
+    left: 0;
+}
+
+/* Popup box */
+.popup {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: white;
+    padding: 25px;
+    border-radius: 15px;
+    text-align: center;
+    width: 90%;
+    max-width: 400px;
 }
 
 select, button {
-    padding: 15px;
-    width: 90%;
-    max-width: 400px;
-    margin-top: 15px;
-    border-radius: 10px;
-    border: none;
+    width: 100%;
+    padding: 12px;
+    margin-top: 10px;
+    border-radius: 8px;
     font-size: 16px;
 }
 
 button {
     background: #25D366;
     color: white;
-    font-size: 18px;
-    cursor: pointer;
+    border: none;
+}
+
+/* Background website */
+.main {
+    padding: 50px;
+    text-align: center;
 }
 </style>
+
 </head>
 
 <body>
 
-<div class="container">
+<!-- POPUP -->
+<div class="overlay" id="popupBox">
+    <div class="popup">
+        <h2>YardCare Pekanbaru</h2>
+        <p>Pilih layanan:</p>
+
+        <select id="layanan">
+            <option value="">-- Pilih Layanan --</option>
+            <option>JASA POTONG RUMPUT HALAMAN (Rumput & tumbuhan liar)</option>
+            <option>JASA PERAWATAN TAMAN (Pemangkasan taman)</option>
+            <option>JASA PENUMBUHAN RUMPUT HALAMAN</option>
+            <option>JASA CUSTOM (Permintaan layanan khusus)</option>
+        </select>
+
+        <button onclick="kirimWA()">Pesan Sekarang</button>
+    </div>
+</div>
+
+<!-- HALAMAN BELAKANG -->
+<div class="main">
     <h1>YardCare Pekanbaru</h1>
-
-    <h3>Pilih Layanan</h3>
-
-    <select id="layanan">
-        <option value="">-- Pilih Layanan --</option>
-        <option>JASA POTONG RUMPUT HALAMAN (Rumput & tumbuhan liar)</option>
-        <option>JASA PERAWATAN TAMAN (Pemangkasan taman)</option>
-        <option>JASA PENUMBUHAN RUMPUT HALAMAN</option>
-        <option>JASA CUSTOM (Permintaan layanan khusus)</option>
-    </select>
-
-    <button onclick="kirimWA()">Pesan Sekarang</button>
+    <p>Jasa Perawatan Taman & Halaman Profesional</p>
 </div>
 
 <script>
