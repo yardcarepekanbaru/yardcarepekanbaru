@@ -7,94 +7,72 @@
 
 <style>
 body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    background: #f4f4f4;
-}
-
-header {
-    background: linear-gradient(135deg, #2e7d32, #4caf50);
-    color: white;
-    text-align: center;
-    padding: 50px 20px;
-}
-
-h1 {
-    margin: 0;
-}
-
-.section {
-    padding: 25px;
-}
-
-.card {
-    background: white;
-    padding: 15px;
-    margin: 10px 0;
-    border-radius: 10px;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-}
-
-.btn-wa {
-    display: inline-block;
-    background: #25D366;
-    color: white;
-    padding: 15px 25px;
-    border-radius: 10px;
-    text-decoration: none;
-    font-size: 18px;
-    margin-top: 15px;
-}
-
-.footer {
-    text-align: center;
-    padding: 20px;
+    font-family: Arial;
     background: #2e7d32;
     color: white;
+    text-align: center;
+    margin: 0;
+}
+
+.container {
+    margin-top: 100px;
+    padding: 20px;
+}
+
+select, button {
+    padding: 15px;
+    width: 90%;
+    max-width: 400px;
+    margin-top: 15px;
+    border-radius: 10px;
+    border: none;
+    font-size: 16px;
+}
+
+button {
+    background: #25D366;
+    color: white;
+    font-size: 18px;
+    cursor: pointer;
 }
 </style>
 </head>
 
 <body>
 
-<header>
+<div class="container">
     <h1>YardCare Pekanbaru</h1>
-    <p>Jasa Perawatan Taman & Halaman Profesional</p>
-    <a class="btn-wa" href="https://wa.me/6282285878450">Hubungi via WhatsApp</a>
-</header>
 
-<div class="section">
-    <h2>Layanan Kami</h2>
-    <div class="card">✔ Potong rumput</div>
-    <div class="card">✔ Pembersihan halaman</div>
-    <div class="card">✔ Perawatan taman rutin</div>
-    <div class="card">✔ Pangkas pohon kecil</div>
-    <div class="card">✔ Bersih daun & sampah taman</div>
+    <h3>Pilih Layanan</h3>
+
+    <select id="layanan">
+        <option value="">-- Pilih Layanan --</option>
+        <option>JASA POTONG RUMPUT HALAMAN (Rumput & tumbuhan liar)</option>
+        <option>JASA PERAWATAN TAMAN (Pemangkasan taman)</option>
+        <option>JASA PENUMBUHAN RUMPUT HALAMAN</option>
+        <option>JASA CUSTOM (Permintaan layanan khusus)</option>
+    </select>
+
+    <button onclick="kirimWA()">Pesan Sekarang</button>
 </div>
 
-<div class="section">
-    <h2>Keunggulan Kami</h2>
-    <div class="card">✔ Cepat & profesional</div>
-    <div class="card">✔ Harga terjangkau</div>
-    <div class="card">✔ Bisa panggilan ke lokasi</div>
-</div>
+<script>
+function kirimWA() {
+    var layanan = document.getElementById("layanan").value;
 
-<div class="section">
-    <h2>Area Layanan</h2>
-    <div class="card">Pekanbaru & sekitarnya</div>
-</div>
+    if(layanan === "") {
+        alert("Silakan pilih layanan dulu!");
+        return;
+    }
 
-<div class="section">
-    <h2>Kontak</h2>
-    <div class="card">
-        WhatsApp: 082285878450<br>
-        Lokasi: Pekanbaru, Riau
-    </div>
-</div>
+    var nomor = "6282285878450";
+    var pesan = "Halo YardCare Pekanbaru, saya ingin pesan layanan:\n" + layanan;
 
-<div class="footer">
-    © 2026 YardCare Pekanbaru
-</div>
+    var url = "https://wa.me/" + nomor + "?text=" + encodeURIComponent(pesan);
+
+    window.open(url, '_blank');
+}
+</script>
 
 </body>
 </html>
