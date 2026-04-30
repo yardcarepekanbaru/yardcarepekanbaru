@@ -11,7 +11,6 @@ body {
     font-family: Arial, sans-serif;
 }
 
-/* HEADER */
 .header {
     background: url('bg1.png') center/cover no-repeat;
     color: white;
@@ -19,7 +18,6 @@ body {
     text-align: center;
 }
 
-/* MENU */
 .nav {
     background: #1b5e20;
     display: flex;
@@ -33,13 +31,11 @@ body {
     text-decoration: none;
 }
 
-/* SECTION */
 .section {
     padding: 40px;
     text-align: center;
 }
 
-/* BUTTON */
 .btn {
     background: #25D366;
     color: white;
@@ -50,7 +46,6 @@ body {
     margin-top: 10px;
 }
 
-/* GALERI */
 .gallery {
     display: flex;
     flex-wrap: wrap;
@@ -63,7 +58,6 @@ body {
     border-radius: 10px;
 }
 
-/* POPUP */
 .overlay {
     position: fixed;
     width: 100%;
@@ -94,7 +88,6 @@ body {
     cursor: pointer;
 }
 
-/* FORM */
 select, input, textarea, button {
     width: 100%;
     padding: 12px;
@@ -108,25 +101,28 @@ button {
     border: none;
     cursor: pointer;
 }
+
+.note {
+    font-size: 13px;
+    color: #555;
+    margin-top: 10px;
+}
 </style>
 </head>
 
 <body>
 
-<!-- HEADER -->
 <div class="header">
     <h1>YardCare Pekanbaru</h1>
     <p>Jasa Perawatan Taman & Halaman Profesional</p>
 </div>
 
-<!-- MENU -->
 <div class="nav">
     <a href="#layanan">Layanan</a>
     <a href="#hasil">Hasil Kerja</a>
     <a href="#testimoni">Testimoni</a>
 </div>
 
-<!-- LAYANAN -->
 <div class="section" id="layanan">
     <h2>Layanan Kami</h2>
     <p>✔ Potong rumput</p>
@@ -137,7 +133,6 @@ button {
     <a href="#" class="btn" onclick="bukaPopup()">Pesan Sekarang</a>
 </div>
 
-<!-- HASIL -->
 <div class="section" id="hasil">
     <h2>Hasil Kerja Kami</h2>
     <div class="gallery">
@@ -146,13 +141,11 @@ button {
     </div>
 </div>
 
-<!-- TESTIMONI -->
 <div class="section" id="testimoni">
     <h2>Testimoni</h2>
     <p>"Kerja rapi, cepat!"</p>
 </div>
 
-<!-- POPUP -->
 <div class="overlay" id="popupBox">
     <div class="popup">
         <span class="close" onclick="tutupPopup()">×</span>
@@ -161,19 +154,24 @@ button {
 
         <select id="layananSelect" onchange="tampilForm()">
             <option value="">-- Pilih Layanan --</option>
-            <option value="potong">Potong rumput</option>
-            <option value="taman">Perawatan taman</option>
-            <option value="tanam">Penumbuhan rumput</option>
-            <option value="custom">Custom</option>
+            <option value="Potong rumput">Potong rumput</option>
+            <option value="Perawatan taman">Perawatan taman</option>
+            <option value="Penumbuhan rumput">Penumbuhan rumput</option>
+            <option value="Custom">Custom</option>
         </select>
 
-        <!-- FORM TAMBAHAN -->
-        <div id="formPotong" style="display:none;">
-
+        <!-- FORM NORMAL -->
+        <div id="formNormal">
             <input type="text" id="luas" placeholder="Perkiraan luas (contoh: 100m2)">
             <input type="text" id="kontak" placeholder="Nomor HP / WhatsApp">
             <textarea id="alamat" placeholder="Alamat lengkap"></textarea>
 
+            <p class="note">Jika tidak keberatan, mohon sertakan foto halaman anda</p>
+        </div>
+
+        <!-- FORM CUSTOM -->
+        <div id="formCustom" style="display:none;">
+            <textarea id="pesanCustom" placeholder="Tulis kebutuhan Anda"></textarea>
         </div>
 
         <button onclick="kirimWA()">Pesan Sekarang</button>
@@ -184,40 +182,49 @@ button {
 function tampilForm() {
     var layanan = document.getElementById("layananSelect").value;
 
-    if (layanan === "potong") {
-        document.getElementById("formPotong").style.display = "block";
+    if(layanan === "Custom") {
+        document.getElementById("formNormal").style.display = "none";
+        document.getElementById("formCustom").style.display = "block";
     } else {
-        document.getElementById("formPotong").style.display = "none";
+        document.getElementById("formNormal").style.display = "block";
+        document.getElementById("formCustom").style.display = "none";
     }
 }
 
 function kirimWA() {
     var layanan = document.getElementById("layananSelect").value;
+    var nomor = "6282285878450";
+    var pesan = "Halo YardCare Pekanbaru,%0A";
 
     if(layanan === "") {
         alert("Pilih layanan dulu!");
         return;
     }
 
-    var nomor = "6282285878450";
-    var pesan = "Halo YardCare Pekanbaru,%0A";
+    if(layanan === "Custom") {
+        var isi = document.getElementById("pesanCustom").value;
 
-    if(layanan === "potong") {
+        if(isi === "") {
+            alert("Isi pesan dulu!");
+            return;
+        }
+
+        pesan += "Permintaan khusus:%0A" + isi;
+
+    } else {
         var luas = document.getElementById("luas").value;
         var kontak = document.getElementById("kontak").value;
         var alamat = document.getElementById("alamat").value;
 
         if(luas === "" || kontak === "" || alamat === "") {
-            alert("Lengkapi data dulu!");
+            alert("Lengkapi semua data!");
             return;
         }
 
-        pesan += "Saya ingin potong rumput.%0A";
+        pesan += "Layanan: " + layanan + "%0A";
         pesan += "Luas: " + luas + "%0A";
         pesan += "Kontak: " + kontak + "%0A";
         pesan += "Alamat: " + alamat;
-    } else {
-        pesan += "Saya ingin layanan: " + layanan;
     }
 
     var url = "https://wa.me/" + nomor + "?text=" + pesan;
