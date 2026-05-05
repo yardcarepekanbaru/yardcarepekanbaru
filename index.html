@@ -11,7 +11,6 @@ body {
     font-family: Arial, sans-serif;
 }
 
-/* HEADER */
 .header {
     background: url('bg1.png') center/cover no-repeat;
     color: white;
@@ -19,17 +18,25 @@ body {
     text-align: center;
 }
 
-/* PROMO */
 .promo {
     background: red;
     color: white;
     padding: 15px;
     text-align: center;
     font-weight: bold;
-    font-size: 16px;
 }
 
-/* MENU */
+.promo-btn {
+    display: block;
+    margin-top: 10px;
+    background: yellow;
+    color: black;
+    padding: 10px;
+    border-radius: 8px;
+    font-weight: bold;
+    text-decoration: none;
+}
+
 .nav {
     background: #1b5e20;
     display: flex;
@@ -43,13 +50,11 @@ body {
     text-decoration: none;
 }
 
-/* SECTION */
 .section {
     padding: 40px;
     text-align: center;
 }
 
-/* BUTTON */
 .btn {
     background: #25D366;
     color: white;
@@ -60,7 +65,6 @@ body {
     margin-top: 10px;
 }
 
-/* GALERI */
 .gallery {
     display: flex;
     flex-wrap: wrap;
@@ -73,7 +77,6 @@ body {
     border-radius: 10px;
 }
 
-/* POPUP */
 .overlay {
     position: fixed;
     width: 100%;
@@ -104,7 +107,6 @@ body {
     cursor: pointer;
 }
 
-/* FORM */
 select, input, textarea, button {
     width: 100%;
     padding: 12px;
@@ -116,10 +118,8 @@ button {
     background: #25D366;
     color: white;
     border: none;
-    cursor: pointer;
 }
 
-/* NOTE */
 .note {
     font-size: 13px;
     color: red;
@@ -131,51 +131,26 @@ button {
 
 <body>
 
-<!-- HEADER -->
 <div class="header">
     <h1>YardCare Pekanbaru</h1>
     <p>Jasa Perawatan Taman & Halaman Profesional</p>
 </div>
 
-<!-- PROMO -->
 <div class="promo">
-🔥 PROMO TERBATAS! Diskon 20% + GRATIS survey lokasi 🔥
+🔥 PROMO TERBATAS! Diskon 20% + GRATIS survey 🔥
+<a href="#" class="promo-btn" onclick="bukaPopupPromo()">Pesan menggunakan promosi disini</a>
 </div>
 
-<!-- MENU -->
 <div class="nav">
     <a href="#layanan">Layanan</a>
     <a href="#hasil">Hasil Kerja</a>
     <a href="#testimoni">Testimoni</a>
 </div>
 
-<!-- LAYANAN -->
-<div class="section" id="layanan">
-    <h2>Layanan Kami</h2>
-    <p>✔ Potong rumput</p>
-    <p>✔ Perawatan taman</p>
-    <p>✔ Penumbuhan rumput</p>
-    <p>✔ Custom sesuai kebutuhan</p>
-
+<div class="section">
     <a href="#" class="btn" onclick="bukaPopup()">Pesan Sekarang</a>
 </div>
 
-<!-- HASIL -->
-<div class="section" id="hasil">
-    <h2>Hasil Kerja Kami</h2>
-    <div class="gallery">
-        <img src="taman1.jpg">
-        <img src="taman2.jpg">
-    </div>
-</div>
-
-<!-- TESTIMONI -->
-<div class="section" id="testimoni">
-    <h2>Testimoni</h2>
-    <p>"Kerja rapi, cepat!"</p>
-</div>
-
-<!-- POPUP -->
 <div class="overlay" id="popupBox">
     <div class="popup">
         <span class="close" onclick="tutupPopup()">×</span>
@@ -190,18 +165,16 @@ button {
             <option value="Custom">Custom</option>
         </select>
 
-        <!-- FORM NORMAL -->
         <div id="formNormal">
-            <input type="text" id="luas" placeholder="Perkiraan luas (contoh: 100m2)">
-            <input type="text" id="kontak" placeholder="Nomor HP / WhatsApp">
-            <textarea id="alamat" placeholder="Alamat lengkap"></textarea>
+            <input type="text" id="luas" placeholder="Perkiraan luas">
+            <input type="text" id="kontak" placeholder="Nomor HP">
+            <textarea id="alamat" placeholder="Alamat"></textarea>
 
             <p class="note">
-            Jika tidak keberatan, saat mengirim pesan, mohon kirimkan foto halaman anda
+Jika tidak keberatan, saat mengirim pesan, mohon kirimkan foto halaman anda
             </p>
         </div>
 
-        <!-- FORM CUSTOM -->
         <div id="formCustom" style="display:none;">
             <textarea id="pesanCustom" placeholder="Tulis kebutuhan Anda"></textarea>
         </div>
@@ -211,6 +184,18 @@ button {
 </div>
 
 <script>
+var modePromo = false;
+
+function bukaPopup() {
+    modePromo = false;
+    document.getElementById("popupBox").style.display = "block";
+}
+
+function bukaPopupPromo() {
+    modePromo = true;
+    document.getElementById("popupBox").style.display = "block";
+}
+
 function tampilForm() {
     var layanan = document.getElementById("layananSelect").value;
 
@@ -233,6 +218,10 @@ function kirimWA() {
         return;
     }
 
+    if(modePromo) {
+        pesan += "Saya ingin menggunakan PROMO%0A";
+    }
+
     if(layanan === "Custom") {
         var isi = document.getElementById("pesanCustom").value;
 
@@ -241,7 +230,7 @@ function kirimWA() {
             return;
         }
 
-        pesan += "Permintaan khusus:%0A" + isi;
+        pesan += isi;
 
     } else {
         var luas = document.getElementById("luas").value;
@@ -265,10 +254,6 @@ function kirimWA() {
 
 function tutupPopup() {
     document.getElementById("popupBox").style.display = "none";
-}
-
-function bukaPopup() {
-    document.getElementById("popupBox").style.display = "block";
 }
 </script>
 
