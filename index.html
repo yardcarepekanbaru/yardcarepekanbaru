@@ -9,81 +9,122 @@
 body {
     margin: 0;
     font-family: Arial, sans-serif;
+    background: #f5f5f5;
 }
 
+/* HEADER */
 .header {
     background: url('bg1.png') center/cover no-repeat;
     color: white;
-    padding: 80px 20px;
+    padding: 100px 20px;
     text-align: center;
+    position: relative;
 }
 
+.header::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(0,0,0,0.4);
+}
+
+.header-content {
+    position: relative;
+    z-index: 1;
+}
+
+/* PROMO */
 .promo {
     background: red;
     color: white;
     padding: 15px;
     text-align: center;
     font-weight: bold;
+    font-size: 18px;
 }
 
 .promo-btn {
-    display: block;
+    display: inline-block;
     margin-top: 10px;
     background: yellow;
     color: black;
-    padding: 10px;
-    border-radius: 8px;
-    font-weight: bold;
+    padding: 12px 20px;
+    border-radius: 10px;
     text-decoration: none;
+    font-weight: bold;
 }
 
+/* MENU */
 .nav {
-    background: #1b5e20;
+    background: #145214;
     display: flex;
     justify-content: center;
-    gap: 20px;
-    padding: 10px;
+    gap: 25px;
+    padding: 15px;
 }
 
 .nav a {
     color: white;
     text-decoration: none;
+    font-weight: bold;
 }
 
+/* SECTION */
 .section {
-    padding: 40px;
+    padding: 50px 20px;
     text-align: center;
 }
 
+/* BUTTON */
 .btn {
     background: #25D366;
     color: white;
-    padding: 12px 20px;
-    border-radius: 8px;
+    padding: 14px 24px;
+    border-radius: 10px;
     text-decoration: none;
     display: inline-block;
-    margin-top: 10px;
+    margin-top: 15px;
+    font-weight: bold;
 }
 
+/* SLIDER */
+.slider {
+    width: 100%;
+    overflow: hidden;
+    margin-top: 20px;
+}
+
+.slider img {
+    width: 90%;
+    max-width: 800px;
+    border-radius: 15px;
+    margin: 15px auto;
+    display: block;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+}
+
+/* GALERI */
 .gallery {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    gap: 10px;
+    gap: 15px;
 }
 
 .gallery img {
     width: 300px;
-    border-radius: 10px;
+    border-radius: 12px;
 }
 
+/* POPUP */
 .overlay {
     position: fixed;
     width: 100%;
     height: 100%;
-    background: rgba(0,0,0,0.4);
+    background: rgba(0,0,0,0.5);
     top: 0;
     left: 0;
+    z-index: 999;
 }
 
 .popup {
@@ -97,50 +138,97 @@ body {
     width: 90%;
     max-width: 400px;
     text-align: center;
+    z-index: 1000;
 }
 
 .close {
     position: absolute;
     top: 10px;
     right: 15px;
-    font-size: 22px;
+    font-size: 24px;
     cursor: pointer;
 }
 
+/* FORM */
 select, input, textarea, button {
     width: 100%;
     padding: 12px;
     margin-top: 10px;
     border-radius: 8px;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
 }
 
 button {
     background: #25D366;
     color: white;
     border: none;
+    font-weight: bold;
+    cursor: pointer;
 }
 
+/* NOTE */
 .note {
     font-size: 13px;
     color: red;
     font-weight: bold;
     margin-top: 10px;
 }
+
+/* FLOATING BUTTON */
+.floating-btn {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: #25D366;
+    color: white;
+    padding: 15px 20px;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: bold;
+    z-index: 998;
+    display: none;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+}
+
+/* RESPONSIVE */
+@media(max-width: 600px) {
+    .nav {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .header {
+        padding: 70px 15px;
+    }
+
+    .promo {
+        font-size: 15px;
+    }
+}
 </style>
 </head>
 
 <body>
 
+<!-- HEADER -->
 <div class="header">
-    <h1>YardCare Pekanbaru</h1>
-    <p>Jasa Perawatan Taman & Halaman Profesional</p>
+    <div class="header-content">
+        <h1>YardCare Pekanbaru</h1>
+        <p>Jasa Perawatan Taman & Halaman Profesional</p>
+    </div>
 </div>
 
+<!-- PROMO -->
 <div class="promo">
-🔥 PROMO ! DISCOUNT 50% uji coba layanan potong rumput MAX 30M2🔥
-<a href="#" class="promo-btn" onclick="bukaPopupPromo()">Pesan menggunakan promosi <u>disini</u></a>
+🔥 PROMO TERBATAS! Diskon 20% + GRATIS Survey Halaman 🔥
+<br>
+<a href="#" class="promo-btn" onclick="bukaPopupPromo()">
+Pesan Menggunakan Promosi Disini
+</a>
 </div>
 
+<!-- MENU -->
 <div class="nav">
     <a href="#layanan">Layanan</a>
     <a href="#hasil">Hasil Kerja</a>
@@ -150,17 +238,32 @@ button {
 <!-- LAYANAN -->
 <div class="section" id="layanan">
     <h2>Layanan Kami</h2>
-    <p>✔ Potong rumput</p>
-    <p>✔ Perawatan taman</p>
-    <p>✔ Penumbuhan rumput</p>
-    <p>✔ Custom sesuai kebutuhan</p>
 
-    <a href="#" class="btn" onclick="bukaPopup()">Pesan Sekarang</a>
+    <p>✔ Jasa Potong Rumput</p>
+    <p>✔ Jasa Perawatan Taman</p>
+    <p>✔ Jasa Penumbuhan Rumput</p>
+    <p>✔ Custom Sesuai Kebutuhan</p>
+
+    <a href="#" class="btn" onclick="bukaPopup()">
+Pesan Sekarang
+    </a>
+</div>
+
+<!-- SLIDER FOTO -->
+<div class="section">
+    <h2>Hasil Perawatan YardCare</h2>
+
+    <div class="slider">
+        <img src="taman1.jpg">
+        <img src="taman2.jpg">
+        <img src="taman3.jpg">
+    </div>
 </div>
 
 <!-- HASIL -->
 <div class="section" id="hasil">
     <h2>Hasil Kerja Kami</h2>
+
     <div class="gallery">
         <img src="taman1.jpg">
         <img src="taman2.jpg">
@@ -170,99 +273,173 @@ button {
 <!-- TESTIMONI -->
 <div class="section" id="testimoni">
     <h2>Testimoni</h2>
-    <p>"Kerja rapi, cepat!"</p>
-    <p>"Halaman jadi bersih!"</p>
+
+    <p>"Kerja cepat dan hasil rapi!"</p>
+    <p>"Halaman rumah jadi bersih dan nyaman."</p>
 </div>
 
 <!-- POPUP -->
 <div class="overlay" id="popupBox">
+
     <div class="popup">
+
         <span class="close" onclick="tutupPopup()">×</span>
 
         <h2>Pilih Layanan</h2>
 
         <select id="layananSelect" onchange="tampilForm()">
+
             <option value="">-- Pilih Layanan --</option>
-            <option value="Potong rumput">Potong rumput</option>
-            <option value="Perawatan taman">Perawatan taman</option>
-            <option value="Penumbuhan rumput">Penumbuhan rumput</option>
-            <option value="Custom">Custom</option>
+
+            <option value="Potong rumput">
+Potong rumput
+            </option>
+
+            <option value="Perawatan taman">
+Perawatan taman
+            </option>
+
+            <option value="Penumbuhan rumput">
+Penumbuhan rumput
+            </option>
+
+            <option value="Custom">
+Custom
+            </option>
+
         </select>
 
+        <!-- FORM NORMAL -->
         <div id="formNormal">
-            <input type="text" id="luas" placeholder="Perkiraan luas">
-            <input type="text" id="kontak" placeholder="Nomor HP">
-            <textarea id="alamat" placeholder="Alamat"></textarea>
+
+            <input type="text"
+            id="luas"
+            placeholder="Perkiraan luas">
+
+            <input type="text"
+            id="kontak"
+            placeholder="Nomor HP">
+
+            <textarea id="alamat"
+            placeholder="Alamat"></textarea>
 
             <p class="note">
 Jika tidak keberatan, saat mengirim pesan, mohon kirimkan foto halaman anda
             </p>
+
         </div>
 
+        <!-- FORM CUSTOM -->
         <div id="formCustom" style="display:none;">
-            <textarea id="pesanCustom" placeholder="Tulis kebutuhan Anda"></textarea>
+
+            <textarea id="pesanCustom"
+            placeholder="Tulis kebutuhan Anda"></textarea>
+
         </div>
 
-        <button onclick="kirimWA()">Pesan Sekarang</button>
+        <button onclick="kirimWA()">
+Pesan Sekarang
+        </button>
+
     </div>
+
 </div>
 
+<!-- FLOATING BUTTON -->
+<a href="#"
+class="floating-btn"
+id="floatingBtn"
+onclick="bukaPopup()">
+📩 Pesan Sekarang
+</a>
+
 <script>
+
 var modePromo = false;
 
 function bukaPopup() {
+
     modePromo = false;
+
     document.getElementById("popupBox").style.display = "block";
 }
 
 function bukaPopupPromo() {
+
     modePromo = true;
+
     document.getElementById("popupBox").style.display = "block";
 }
 
 function tampilForm() {
-    var layanan = document.getElementById("layananSelect").value;
+
+    var layanan =
+    document.getElementById("layananSelect").value;
 
     if(layanan === "Custom") {
+
         document.getElementById("formNormal").style.display = "none";
+
         document.getElementById("formCustom").style.display = "block";
+
     } else {
+
         document.getElementById("formNormal").style.display = "block";
+
         document.getElementById("formCustom").style.display = "none";
     }
 }
 
 function kirimWA() {
-    var layanan = document.getElementById("layananSelect").value;
+
+    var layanan =
+    document.getElementById("layananSelect").value;
+
     var nomor = "6282285878450";
+
     var pesan = "Halo YardCare Pekanbaru,%0A";
 
     if(layanan === "") {
+
         alert("Pilih layanan dulu!");
+
         return;
     }
 
     if(modePromo) {
+
         pesan += "Saya ingin menggunakan PROMO%0A";
     }
 
     if(layanan === "Custom") {
-        var isi = document.getElementById("pesanCustom").value;
+
+        var isi =
+        document.getElementById("pesanCustom").value;
 
         if(isi === "") {
+
             alert("Isi pesan dulu!");
+
             return;
         }
 
         pesan += isi;
 
     } else {
-        var luas = document.getElementById("luas").value;
-        var kontak = document.getElementById("kontak").value;
-        var alamat = document.getElementById("alamat").value;
+
+        var luas =
+        document.getElementById("luas").value;
+
+        var kontak =
+        document.getElementById("kontak").value;
+
+        var alamat =
+        document.getElementById("alamat").value;
 
         if(luas === "" || kontak === "" || alamat === "") {
+
             alert("Lengkapi semua data!");
+
             return;
         }
 
@@ -272,13 +449,19 @@ function kirimWA() {
         pesan += "Alamat: " + alamat;
     }
 
-    var url = "https://wa.me/" + nomor + "?text=" + pesan;
+    var url =
+    "https://wa.me/" + nomor + "?text=" + pesan;
+
     window.open(url, '_blank');
 }
 
 function tutupPopup() {
+
     document.getElementById("popupBox").style.display = "none";
+
+    document.getElementById("floatingBtn").style.display = "block";
 }
+
 </script>
 
 </body>
