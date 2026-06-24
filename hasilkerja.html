@@ -278,14 +278,178 @@ body{
 
 <!-- FLOATING WA -->
 
-<a
-href="https://wa.me/6282285878450"
+<a href="#"
 class="floating-btn"
-target="_blank">
+onclick="bukaPopup()">
 
 📩 Pesan Sekarang
 
 </a>
+<div class="overlay" id="popupBox">
 
+    <div class="popup">
+
+        <span class="close"
+        onclick="tutupPopup()">
+
+×
+
+        </span>
+
+        <h2>Pilih Layanan</h2>
+
+        <select id="layananSelect"
+        onchange="tampilForm()">
+
+            <option value="">
+-- Pilih Layanan --
+            </option>
+
+            <option value="Potong rumput">
+Potong rumput
+            </option>
+
+            <option value="Perawatan taman">
+Perawatan taman
+            </option>
+
+            <option value="Penumbuhan rumput">
+Penumbuhan rumput
+            </option>
+
+            <option value="Custom">
+Custom
+            </option>
+
+        </select>
+
+
+        <!-- FORM NORMAL -->
+
+        <div id="formNormal">
+
+            <input type="text"
+            id="luas"
+            placeholder="Perkiraan luas">
+
+            <input type="text"
+            id="kontak"
+            placeholder="Nomor HP">
+
+            <textarea id="alamat"
+            placeholder="Alamat"></textarea>
+
+            <p class="note">
+
+Jika tidak keberatan, saat mengirim pesan,
+mohon kirimkan foto halaman anda
+
+            </p>
+
+        </div>
+
+
+        <!-- FORM CUSTOM -->
+
+        <div id="formCustom"
+        style="display:none;">
+
+            <textarea id="pesanCustom"
+            placeholder="Tulis kebutuhan Anda"></textarea>
+
+        </div>
+
+
+        <button onclick="kirimWA()">
+
+Pesan Sekarang
+
+        </button>
+
+    </div>
+
+</div>
+    
 </body>
+    <script>
+
+function bukaPopup() {
+    document.getElementById("popupBox").style.display = "block";
+}
+
+function tutupPopup() {
+    document.getElementById("popupBox").style.display = "none";
+}
+
+function tampilForm() {
+
+    var layanan =
+    document.getElementById("layananSelect").value;
+
+    if(layanan === "Custom") {
+
+        document.getElementById("formNormal").style.display = "none";
+        document.getElementById("formCustom").style.display = "block";
+
+    } else {
+
+        document.getElementById("formNormal").style.display = "block";
+        document.getElementById("formCustom").style.display = "none";
+
+    }
+}
+
+function kirimWA() {
+
+    var layanan =
+    document.getElementById("layananSelect").value;
+
+    var nomor = "6282285878450";
+
+    if(layanan === "") {
+        alert("Pilih layanan dulu!");
+        return;
+    }
+
+    var pesan = "Halo YardCare Pekanbaru%0A";
+
+    if(layanan === "Custom") {
+
+        var isi =
+        document.getElementById("pesanCustom").value;
+
+        if(isi === "") {
+            alert("Isi kebutuhan Anda terlebih dahulu!");
+            return;
+        }
+
+        pesan += "Custom: " + isi;
+
+    } else {
+
+        var luas =
+        document.getElementById("luas").value;
+
+        var kontak =
+        document.getElementById("kontak").value;
+
+        var alamat =
+        document.getElementById("alamat").value;
+
+        pesan +=
+        "Layanan: " + layanan + "%0A" +
+        "Luas: " + luas + "%0A" +
+        "Kontak: " + kontak + "%0A" +
+        "Alamat: " + alamat;
+    }
+
+    window.open(
+        "https://wa.me/" + nomor + "?text=" + pesan,
+        "_blank"
+    );
+}
+
+</script>
+
 </html>
+<div class="overlay" id="popupBox" style="display:none;">
