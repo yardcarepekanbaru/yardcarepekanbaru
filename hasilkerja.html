@@ -201,7 +201,7 @@ body{
     display:none;
 }
 
-.project-slide.active{
+.project-slide-potong.active-potong{
     display:block;
 }
 
@@ -262,51 +262,53 @@ body{
 
 <div class="section">
 
+<h2>Potong Rumput</h2>
+
 <div class="slider-container">
 
-    <button class="nav-btn" onclick="prevSlide()">❮</button>
+<button class="nav-btn" onclick="prevPotong()">❮</button>
 
-    <div class="project-slide active">
+<div class="project-slide-potong active-potong">
 
-        <h2>Proyek 1 - Potong Rumput Halaman Rumah</h2>
+<h3>Project 1</h3>
 
-        <div class="gallery">
+<div class="gallery">
 
-            <div class="foto-box">
-                <img src="before 1.png">
-                <h3>Before</h3>
-            </div>
+<div class="foto-box">
+<img src="before 1.png">
+<h3>Before</h3>
+</div>
 
-            <div class="foto-box">
-                <img src="hasil kerja 1.png">
-                <h3>After</h3>
-            </div>
+<div class="foto-box">
+<img src="hasil kerja 1.png">
+<h3>After</h3>
+</div>
 
-        </div>
+</div>
 
-    </div>
+</div>
 
-    <div class="project-slide">
+<div class="project-slide-potong">
 
-        <h2>Proyek 2 - Pembersihan Lahan</h2>
+<h3>Project 2</h3>
 
-        <div class="gallery">
+<div class="gallery">
 
-            <div class="foto-box">
-                <img src="BEFORE 2.jpeg">
-                <h3>Before</h3>
-            </div>
+<div class="foto-box">
+<img src="BEFORE 2.jpeg">
+<h3>Before</h3>
+</div>
 
-            <div class="foto-box">
-                <img src="AFTER 2.jpeg">
-                <h3>After</h3>
-            </div>
+<div class="foto-box">
+<img src="AFTER 2.jpeg">
+<h3>After</h3>
+</div>
 
-        </div>
+</div>
 
-    </div>
+</div>
 
-    <button class="nav-btn" onclick="nextSlide()">❯</button>
+<button class="nav-btn" onclick="nextPotong()">❯</button>
 
 </div>
 
@@ -527,43 +529,43 @@ function kirimWA() {
         "_blank"
     );
 }
-let currentSlide = 0;
+let potongIndex = 0;
 
-const slides =
-document.querySelectorAll(".project-slide");
+const potongSlides =
+document.querySelectorAll(".project-slide-potong");
 
-function showSlide(index){
+function showPotong(i){
 
-    slides.forEach(slide=>{
-        slide.classList.remove("active");
-    });
+potongSlides.forEach(s=>{
+s.classList.remove("active-potong");
+});
 
-    slides[index].classList.add("active");
+potongSlides[i].classList.add("active-potong");
 }
 
-function nextSlide(){
+function nextPotong(){
 
-    currentSlide++;
+potongIndex++;
 
-    if(currentSlide >= slides.length){
-        currentSlide = 0;
-    }
-
-    showSlide(currentSlide);
+if(potongIndex >= potongSlides.length){
+potongIndex = 0;
 }
 
-function prevSlide(){
-
-    currentSlide--;
-
-    if(currentSlide < 0){
-        currentSlide = slides.length - 1;
-    }
-
-    showSlide(currentSlide);
+showPotong(potongIndex);
 }
 
-showSlide(0);
+function prevPotong(){
+
+potongIndex--;
+
+if(potongIndex < 0){
+potongIndex = potongSlides.length-1;
+}
+
+showPotong(potongIndex);
+}
+
+showPotong(0);
 </script>
     
 </body>
