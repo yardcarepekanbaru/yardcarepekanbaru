@@ -190,7 +190,31 @@ body{
     margin-top:10px;
 }
 /* MOBILE */
+.slider-container{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:20px;
+}
 
+.project-slide{
+    display:none;
+}
+
+.project-slide.active{
+    display:block;
+}
+
+.nav-btn{
+    background:#145214;
+    color:white;
+    border:none;
+    font-size:30px;
+    width:50px;
+    height:50px;
+    border-radius:50%;
+    cursor:pointer;
+}
 @media(max-width:600px){
 
     .nav{
@@ -238,62 +262,52 @@ body{
 
 <div class="section">
 
-<div class="project">
+<div class="slider-container">
 
-    <h2>Proyek 1 - Potong Rumput Halaman Rumah</h2>
+    <button class="nav-btn" onclick="prevSlide()">❮</button>
 
-    <div class="gallery">
+    <div class="project-slide active">
 
-        <div class="foto-box">
-            <img src="before 1.png">
-            <h3>Before</h3>
-        </div>
+        <h2>Proyek 1 - Potong Rumput Halaman Rumah</h2>
 
-        <div class="foto-box">
-            <img src="hasil kerja 1.png">
-            <h3>After</h3>
-        </div>
+        <div class="gallery">
 
-    </div>
+            <div class="foto-box">
+                <img src="before 1.png">
+                <h3>Before</h3>
+            </div>
 
-</div>
+            <div class="foto-box">
+                <img src="hasil kerja 1.png">
+                <h3>After</h3>
+            </div>
 
-<!-- PROYEK 2 -->
-
-<div class="project">
-
-    <h2>Proyek 2 - Pembersihan Lahan</h2>
-
-    <div class="gallery">
-
-        <div class="foto-box">
-            <img src="BEFORE 2.jpeg">
-            <h3>Before</h3>
-        </div>
-
-        <div class="foto-box">
-            <img src="AFTER 2.jpeg">
-            <h3>After</h3>
         </div>
 
     </div>
 
-</div>
-<div class="gallery">
+    <div class="project-slide">
 
-        <div class="foto-box">
-            <img src="BEFORE 3.jpeg">
-            <h3>Before</h3>
-        </div>
+        <h2>Proyek 2 - Pembersihan Lahan</h2>
 
-        <div class="foto-box">
-            <img src="AFTER 3.png">
-            <h3>After</h3>
+        <div class="gallery">
+
+            <div class="foto-box">
+                <img src="BEFORE 2.jpeg">
+                <h3>Before</h3>
+            </div>
+
+            <div class="foto-box">
+                <img src="AFTER 2.jpeg">
+                <h3>After</h3>
+            </div>
+
         </div>
 
     </div>
 
-</div>
+    <button class="nav-btn" onclick="nextSlide()">❯</button>
+
 </div>
 
 <!-- LAYANAN -->
@@ -513,7 +527,43 @@ function kirimWA() {
         "_blank"
     );
 }
+let currentSlide = 0;
 
+const slides =
+document.querySelectorAll(".project-slide");
+
+function showSlide(index){
+
+    slides.forEach(slide=>{
+        slide.classList.remove("active");
+    });
+
+    slides[index].classList.add("active");
+}
+
+function nextSlide(){
+
+    currentSlide++;
+
+    if(currentSlide >= slides.length){
+        currentSlide = 0;
+    }
+
+    showSlide(currentSlide);
+}
+
+function prevSlide(){
+
+    currentSlide--;
+
+    if(currentSlide < 0){
+        currentSlide = slides.length - 1;
+    }
+
+    showSlide(currentSlide);
+}
+
+showSlide(0);
 </script>
     
 </body>
