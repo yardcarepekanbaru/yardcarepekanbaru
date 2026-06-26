@@ -264,23 +264,25 @@ body{
 
 <h2>Potong Rumput</h2>
 
+<h2>Potong Rumput</h2>
+
 <div class="slider-container">
 
-<button class="nav-btn" onclick="prevPotong()">❮</button>
+<button class="nav-btn" onclick="prevRumput()">❮</button>
 
-<div class="project-slide-potong active-potong">
+<div class="project-slide-rumput active">
 
 <h3>Project 1</h3>
 
 <div class="gallery">
 
 <div class="foto-box">
-<img src="before 1.png">
+<img src="before1.png">
 <h3>Before</h3>
 </div>
 
 <div class="foto-box">
-<img src="hasil kerja 1.png">
+<img src="after1.png">
 <h3>After</h3>
 </div>
 
@@ -288,19 +290,19 @@ body{
 
 </div>
 
-<div class="project-slide-potong">
+<div class="project-slide-rumput">
 
 <h3>Project 2</h3>
 
 <div class="gallery">
 
 <div class="foto-box">
-<img src="BEFORE 2.jpeg">
+<img src="before2.png">
 <h3>Before</h3>
 </div>
 
 <div class="foto-box">
-<img src="AFTER 2.jpeg">
+<img src="after2.png">
 <h3>After</h3>
 </div>
 
@@ -308,10 +310,30 @@ body{
 
 </div>
 
-<button class="nav-btn" onclick="nextPotong()">❯</button>
+<button class="nav-btn" onclick="nextRumput()">❯</button>
+
+</div>
+<h2>Pembersihan Lahan</h2>
+
+<div class="slider-container">
+
+<button class="nav-btn" onclick="prevLahan()">❮</button>
+
+<div class="project-slide-lahan active">
+
+Project 1
 
 </div>
 
+<div class="project-slide-lahan">
+
+Project 2
+
+</div>
+
+<button class="nav-btn" onclick="nextLahan()">❯</button>
+
+</div>
 <!-- LAYANAN -->
 
 <div class="section" id="layanan">
@@ -529,30 +551,40 @@ function kirimWA() {
         "_blank"
     );
 }
-let potongIndex = 0;
+let rumput = 0;
 
-const potongSlides =
-document.querySelectorAll(".project-slide-potong");
+const rumputSlides =
+document.querySelectorAll(".project-slide-rumput");
 
-function showPotong(i){
+function showRumput(i){
 
-potongSlides.forEach(s=>{
-s.classList.remove("active-potong");
-});
+    rumputSlides.forEach(s=>s.classList.remove("active"));
 
-potongSlides[i].classList.add("active-potong");
+    rumputSlides[i].classList.add("active");
+
 }
 
-function nextPotong(){
+function nextRumput(){
 
-potongIndex++;
+    rumput++;
 
-if(potongIndex >= potongSlides.length){
-potongIndex = 0;
+    if(rumput>=rumputSlides.length) rumput=0;
+
+    showRumput(rumput);
+
 }
 
-showPotong(potongIndex);
+function prevRumput(){
+
+    rumput--;
+
+    if(rumput<0) rumput=rumputSlides.length-1;
+
+    showRumput(rumput);
+
 }
+
+showRumput(0);
 
 function prevPotong(){
 
