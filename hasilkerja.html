@@ -190,6 +190,10 @@ body{
     margin-top:10px;
 }
 /* MOBILE */
+.kategori{
+    margin-bottom:70px;
+}
+
 .slider-container{
     display:flex;
     align-items:center;
@@ -197,14 +201,33 @@ body{
     gap:20px;
 }
 
-.project-slide{
+.slider-content{
+    width:750px;
+    max-width:100%;
+}
+
+.project-slide-rumput{
     display:none;
 }
 
-.project-slide-potong.active-potong{
+.project-slide-rumput.active{
+    display:block;
+}
+.project-slide-lahan{
+    display:none;
+}
+
+.project-slide-lahan.active{
     display:block;
 }
 
+.project-slide-taman{
+    display:none;
+}
+
+.project-slide-taman.active{
+    display:block;
+}
 .nav-btn{
     background:#145214;
     color:white;
@@ -215,6 +238,7 @@ body{
     border-radius:50%;
     cursor:pointer;
 }
+    
 @media(max-width:600px){
 
     .nav{
@@ -258,15 +282,34 @@ body{
 
 </div>
 
-<!-- PROYEK 1 -->
+<!-- HASIL KERJA -->
 
 <div class="section">
 
-<h2>Potong Rumput</h2>
+<h2 style="margin-bottom:40px;">
+Hasil Kerja YardCare Pekanbaru
+</h2>
+
+<!-- ========================= -->
+<!-- POTONG RUMPUT -->
+<!-- ========================= -->
+
+<div class="kategori">
+
+<h2>🌿 Potong Rumput</h2>
 
 <div class="slider-container">
 
-<button class="nav-btn" onclick="prevRumput()">❮</button>
+<button class="nav-btn"
+onclick="prevRumput()">
+
+❮
+
+</button>
+
+<div class="slider-content">
+
+<!-- PROJECT 1 -->
 
 <div class="project-slide-rumput active">
 
@@ -275,18 +318,26 @@ body{
 <div class="gallery">
 
 <div class="foto-box">
+
 <img src="before 1.png">
+
 <h3>Before</h3>
+
 </div>
 
 <div class="foto-box">
+
 <img src="hasil kerja 1.png">
+
 <h3>After</h3>
-</div>
 
 </div>
 
 </div>
+
+</div>
+
+<!-- PROJECT 2 -->
 
 <div class="project-slide-rumput">
 
@@ -295,43 +346,213 @@ body{
 <div class="gallery">
 
 <div class="foto-box">
+
 <img src="BEFORE 2.jpeg">
+
 <h3>Before</h3>
+
 </div>
 
 <div class="foto-box">
+
 <img src="AFTER 2.jpeg">
+
 <h3>After</h3>
-</div>
 
 </div>
 
 </div>
 
-<button class="nav-btn" onclick="nextRumput()">❯</button>
+</div>
 
 </div>
-<h2>Pembersihan Lahan</h2>
+
+<button class="nav-btn"
+onclick="nextRumput()">
+
+❯
+
+</button>
+
+</div>
+
+</div>
+
+<hr style="margin:60px 0;">
+<!-- ========================= -->
+<!-- PEMBERSIHAN LAHAN -->
+<!-- ========================= -->
+
+<div class="kategori">
+
+<h2>🧹 Pembersihan Lahan</h2>
 
 <div class="slider-container">
 
-<button class="nav-btn" onclick="prevLahan()">❮</button>
+<button class="nav-btn"
+onclick="prevLahan()">
+
+❮
+
+</button>
+
+<div class="slider-content">
+
+<!-- PROJECT 1 -->
 
 <div class="project-slide-lahan active">
 
-Project 1
+<h3>Project 1</h3>
+
+<div class="gallery">
+
+<div class="foto-box">
+
+<img src="BEFORE 2.jpeg">
+
+<h3>Before</h3>
 
 </div>
+
+<div class="foto-box">
+
+<img src="AFTER 2.jpeg">
+
+<h3>After</h3>
+
+</div>
+
+</div>
+
+</div>
+
+<!-- PROJECT 2 -->
 
 <div class="project-slide-lahan">
 
-Project 2
+<h3>Project 2</h3>
+
+<div class="gallery">
+
+<div class="foto-box">
+
+<img src="before3.jpg">
+
+<h3>Before</h3>
 
 </div>
 
-<button class="nav-btn" onclick="nextLahan()">❯</button>
+<div class="foto-box">
+
+<img src="after3.jpg">
+
+<h3>After</h3>
 
 </div>
+
+</div>
+
+</div>
+
+</div>
+
+<button class="nav-btn"
+onclick="nextLahan()">
+
+❯
+
+</button>
+
+</div>
+
+</div>
+
+<hr style="margin:60px 0;">
+
+    <!-- ========================= -->
+<!-- PEMBUATAN TAMAN -->
+<!-- ========================= -->
+
+<div class="kategori">
+
+<h2>🌳 Pembuatan Taman</h2>
+
+<div class="slider-container">
+
+<button class="nav-btn"
+onclick="prevTaman()">
+
+❮
+
+</button>
+
+<div class="slider-content">
+
+<div class="project-slide-taman active">
+
+<h3>Project 1</h3>
+
+<div class="gallery">
+
+<div class="foto-box">
+
+<img src="taman-before1.jpg">
+
+<h3>Before</h3>
+
+</div>
+
+<div class="foto-box">
+
+<img src="taman-after1.jpg">
+
+<h3>After</h3>
+
+</div>
+
+</div>
+
+</div>
+
+<div class="project-slide-taman">
+
+<h3>Project 2</h3>
+
+<div class="gallery">
+
+<div class="foto-box">
+
+<img src="taman-before2.jpg">
+
+<h3>Before</h3>
+
+</div>
+
+<div class="foto-box">
+
+<img src="taman-after2.jpg">
+
+<h3>After</h3>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<button class="nav-btn"
+onclick="nextTaman()">
+
+❯
+
+</button>
+
+</div>
+
+</div>
+    
 <!-- LAYANAN -->
 
 <div class="section" id="layanan">
@@ -584,18 +805,103 @@ function prevRumput(){
 
 showRumput(0);
 
-function prevPotong(){
+/* ==========================
+   SLIDER PEMBERSIHAN LAHAN
+========================== */
 
-potongIndex--;
+let lahan = 0;
 
-if(potongIndex < 0){
-potongIndex = potongSlides.length-1;
+const lahanSlides =
+document.querySelectorAll(".project-slide-lahan");
+
+function showLahan(i){
+
+    lahanSlides.forEach(s=>{
+        s.classList.remove("active");
+    });
+
+    lahanSlides[i].classList.add("active");
+
 }
 
-showPotong(potongIndex);
+function nextLahan(){
+
+    lahan++;
+
+    if(lahan >= lahanSlides.length){
+
+        lahan = 0;
+
+    }
+
+    showLahan(lahan);
+
 }
 
-showPotong(0);
+function prevLahan(){
+
+    lahan--;
+
+    if(lahan < 0){
+
+        lahan = lahanSlides.length-1;
+
+    }
+
+    showLahan(lahan);
+
+}
+
+showLahan(0);
+        
+        /* ==========================
+   SLIDER PEMBUATAN TAMAN
+========================== */
+
+let taman = 0;
+
+const tamanSlides =
+document.querySelectorAll(".project-slide-taman");
+
+function showTaman(i){
+
+    tamanSlides.forEach(s=>{
+        s.classList.remove("active");
+    });
+
+    tamanSlides[i].classList.add("active");
+
+}
+
+function nextTaman(){
+
+    taman++;
+
+    if(taman >= tamanSlides.length){
+
+        taman = 0;
+
+    }
+
+    showTaman(taman);
+
+}
+
+function prevTaman(){
+
+    taman--;
+
+    if(taman < 0){
+
+        taman = tamanSlides.length-1;
+
+    }
+
+    showTaman(taman);
+
+}
+
+showTaman(0);
 </script>
     
 </body>
